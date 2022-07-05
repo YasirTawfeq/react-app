@@ -10,8 +10,8 @@ function Navbar() {
      </div>
      <div className="pt-12"> 
       <form className=" flex justify-center mt-44 ">
-        <input className=" lg:w-60 xl:p-3 xl:w-80  p-1 rounded-l-full" type="search" placeholder="   Anime Name..." /> 
-        <button className="p-1 rounded-r-full bg-yellow-300 font-bold" type="submit">Search</button>
+        <input className=" lg:w-60 xl:p-3 xl:w-80 rounded-md  p-1 " type="search" placeholder="   Anime Name..." /> 
+        <button className="p-1 rounded-md bg-yellow-300 font-bold" type="submit">Search</button>
       </form>
      </div>
    </nav>

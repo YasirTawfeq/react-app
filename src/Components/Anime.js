@@ -16,7 +16,7 @@ function Anime() {
       
       <div className=" font-mono w-full h-10 bg-yellow-300 rounded-xl mt-2 mb-3 p-2 ">
         <div className="flex justify-evenly ">
-        <div className=" text-black font-bold cursor-pointer hover:border-b-2 border-black" onClick={() => console.log("Clicked")}>New Episode</div>
+        <div className=" text-black font-bold cursor-pointer hover:border-b-2 border-black" onClick={() => console.log("Clicked")}>Episode<small className="">(new)</small></div>
         <div className=" text-black font-bold cursor-pointer hover:border-b-2 border-black"  onClick={() => console.log("Clicked")}>English</div>
         <div className=" text-black font-bold cursor-pointer hover:border-b-2 border-black"  onClick={() => console.log("Clicked")}>Kurdish</div>
         </div>
