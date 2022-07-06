@@ -1,13 +1,13 @@
 import React from 'react'
 import '../index.css';
 import Navbar from './Navbar';
-import Anime from './Anime';
+import NewEpisode from './NewEpisode';
 import Footer from './Footer';
 function App() {
   return (
     <div>
     <Navbar />
-    <Anime />
+    <NewEpisode />
     <Footer />
     </div>
   )

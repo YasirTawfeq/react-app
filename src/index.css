@@ -2,11 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 html{
+  background-color: black;
   margin:0px;
   padding:0px;
 }
 body {
-  background-color: bisque;
+  background-color: black;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

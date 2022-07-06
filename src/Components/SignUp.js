@@ -14,9 +14,9 @@ import {Link as Links} from 'react-router-dom';
 
 function Brand() {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" >
+    <Typography variant="body2" align="center" >
       <Links color="#fde047" to="/">
-        <p className=" m-5 text-2xl xl:text-3xl font-bold tracking-wider">KURD<small>ANIME</small></p> 
+        <p className=" text-yellow-300 m-5 text-2xl xl:text-3xl font-bold tracking-wider">KURD<small>ANIME</small></p> 
       </Links>
     </Typography>
   );
@@ -52,7 +52,7 @@ export default function SignUp() {
             backgroundPosition: 'center',
           }}
         />
-        <Grid item sx={{ bgcolor: 'bisque' }}  xs={12} sm={8} md={5} component={Paper} elevation={6} square> 
+        <Grid item sx={{ bgcolor: 'black' }}  xs={12} sm={8} md={5} component={Paper} elevation={6} square> 
           <Box
             sx={{
               my: 8,
@@ -66,38 +66,43 @@ export default function SignUp() {
              <Links to='/Login'> <div className=" cursor-pointer text-black"><ArrowBackIcon /></div></Links>
             </Avatar>
             <Typography component="h1" variant="h5">
-              <p className="text-black">Sign Up</p>
+              <p className="text-yellow-300">Sign Up</p>
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
                 required
                 fullWidth
+                variant="filled"
                 id="userName"
                 label="User Name"
                 name="userName"
                 autoComplete="User Name"
-                autoFocus
+                sx={{ bgcolor: '#fde047',border: '1px solid',borderRadius:'5px' }}
               />
               <TextField
                 margin="normal"
                 required
                 fullWidth
+                 variant="filled"
                 id="email"
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                 sx={{ bgcolor: '#fde047',border: '1px solid',borderRadius:'5px' }}
                 
               />
               <TextField
                 margin="normal"
                 required
                 fullWidth
+                 variant="filled"
                 name="password"
                 label="Password"
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                 sx={{ bgcolor: '#fde047',border: '1px solid',borderRadius:'5px' }}
               />
               <Button
                 type="submit"
