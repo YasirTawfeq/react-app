@@ -2,35 +2,18 @@ import React from 'react'
 import {Link} from 'react-router-dom';
 import Footer from './Footer';
 import AnimeCard from './AnimeCard';
+import Axios from 'axios';
+import { useState,useEffect } from 'react';
 
 function Home() {
- const animeList=[
-    {title:"One Piece",img:"https://i.pinimg.com/originals/ef/4b/c8/ef4bc8e162fce11f2a609cb0632193d5.jpg",subordub:"sub"},
-     {title:"demon slayer",img:"https://recenthighlights.com/wp-content/uploads/2022/03/Demon-Slayer-Season-3.jpg",subordub:"sub"},
-      {title:"attack on titan",img:"https://wallpaperaccess.com/full/2602009.jpg",subordub:"sub"},
-       {title:"naruto",img:"https://www.myfreewalls.com/public/uploads/preview/ultra-hd-uzumaki-naruto-anime-4k-wallpaper-11623716222tku0ameou5.jpg",subordub:"sub"},
-       {title:"One Piece",img:"https://i.pinimg.com/originals/ef/4b/c8/ef4bc8e162fce11f2a609cb0632193d5.jpg",subordub:"dub"},
-     {title:"demon slayer",img:"https://recenthighlights.com/wp-content/uploads/2022/03/Demon-Slayer-Season-3.jpg",subordub:"dub"},
-      {title:"attack on titan",img:"https://wallpaperaccess.com/full/2602009.jpg",subordub:"dub"},
-       {title:"naruto",img:"https://www.myfreewalls.com/public/uploads/preview/ultra-hd-uzumaki-naruto-anime-4k-wallpaper-11623716222tku0ameou5.jpg",ebisodes:24,subordub:"dub"},
-      {title:"One Piece",img:"https://i.pinimg.com/originals/ef/4b/c8/ef4bc8e162fce11f2a609cb0632193d5.jpg",subordub:"sub"},
-     {title:"demon slayer",img:"https://recenthighlights.com/wp-content/uploads/2022/03/Demon-Slayer-Season-3.jpg",subordub:"sub"},
-      {title:"attack on titan",img:"https://wallpaperaccess.com/full/2602009.jpg",subordub:"sub"},
-       {title:"naruto",img:"https://www.myfreewalls.com/public/uploads/preview/ultra-hd-uzumaki-naruto-anime-4k-wallpaper-11623716222tku0ameou5.jpg",subordub:"sub"},
-       {title:"One Piece",img:"https://i.pinimg.com/originals/ef/4b/c8/ef4bc8e162fce11f2a609cb0632193d5.jpg",subordub:"dub"},
-     {title:"demon slayer",img:"https://recenthighlights.com/wp-content/uploads/2022/03/Demon-Slayer-Season-3.jpg",subordub:"dub"},
-      {title:"attack on titan",img:"https://wallpaperaccess.com/full/2602009.jpg",subordub:"dub"},
-       {title:"naruto",img:"https://www.myfreewalls.com/public/uploads/preview/ultra-hd-uzumaki-naruto-anime-4k-wallpaper-11623716222tku0ameou5.jpg",subordub:"dub"},
-      {title:"One Piece",img:"https://i.pinimg.com/originals/ef/4b/c8/ef4bc8e162fce11f2a609cb0632193d5.jpg",subordub:"sub"},
-     {title:"demon slayer",img:"https://recenthighlights.com/wp-content/uploads/2022/03/Demon-Slayer-Season-3.jpg",subordub:"sub"},
-      {title:"attack on titan",img:"https://wallpaperaccess.com/full/2602009.jpg",subordub:"sub"},
-       {title:"naruto",img:"https://www.myfreewalls.com/public/uploads/preview/ultra-hd-uzumaki-naruto-anime-4k-wallpaper-11623716222tku0ameou5.jpg",subordub:"sub"},
-       {title:"One Piece",img:"https://i.pinimg.com/originals/ef/4b/c8/ef4bc8e162fce11f2a609cb0632193d5.jpg",subordub:"dub"},
-     {title:"demon slayer",img:"https://recenthighlights.com/wp-content/uploads/2022/03/Demon-Slayer-Season-3.jpg",subordub:"dub"},
-      {title:"attack on titan",img:"https://wallpaperaccess.com/full/2602009.jpg",subordub:"dub"},
-       {title:"naruto",img:"https://www.myfreewalls.com/public/uploads/preview/ultra-hd-uzumaki-naruto-anime-4k-wallpaper-11623716222tku0ameou5.jpg",subordub:"dub"},
- 
-    ];
+      
+       const [newEpisod,setNewEpisode]=useState([]);
+       useEffect(()=>{
+        Axios.get("https://gogoanime.herokuapp.com/popular?limit=4").then((response)=>{
+        setNewEpisode(response.data.slice(0,20))
+        }).catch((e)=>{console.log(e);})
+      })
+      
   return (
     <div className=" m-5 md:m-3 ">
       <div className=" font-mono w-full h-10 bg-yellow-300 rounded-xl mt-2 mb-3 p-2 ">
@@ -50,14 +33,14 @@ function Home() {
         </div>
         <form className=" flex justify-center mt-4 md:mt-0 ">
            <input className="" type="search" placeholder="   Anime Name..." />
-           <button className="bg-black text-yellow-300 rounded-sm p-0.5" type="submit">Search</button>
+           <button className="bg-black text-yellow-300  rounded-r-full pr-1" type="submit">Search</button>
         </form>
       </div>
       
-       <AnimeCard data={animeList}/>
+       <AnimeCard data={newEpisod}/>
        <Footer/>
     </div>
   )
 }
 
-export default Home
+export default Home;
