@@ -6,12 +6,14 @@ import { useState,useEffect } from 'react';
 function NewEpisode() {
 
        const [newEpisod,setNewEpisode]=useState([]);
+       
        useEffect(()=>{
          Axios.get("https://gogoanime.herokuapp.com/recent-release")
         .then((response)=>{
-        setNewEpisode(response.data.slice(0,20))
+        setNewEpisode(response.data)
         }).catch((e)=>{console.log(e);})
       })
+
   return (
     <div className=" m-5 md:m-3 ">
       <div className=" font-mono w-full h-10 bg-yellow-300 rounded-xl mt-2 mb-3 p-2 ">
