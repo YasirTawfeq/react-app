@@ -7,19 +7,19 @@ import { useState,useEffect } from 'react';
 
 function Home() {
       
-       const [newEpisod,setNewEpisode]=useState([]);
+       const [animeList,setAnomeList]=useState([]);
        useEffect(()=>{
-        Axios.get("https://gogoanime.herokuapp.com/popular?limit=4").then((response)=>{
-        setNewEpisode(response.data.slice(0,20))
-        }).catch((e)=>{console.log(e);})
-      })
+        Axios.get("https://api.jikan.moe/v4/anime")
+        .then((response)=>{console.log(response.data);setAnomeList(response.data.data.slice(0,21))})
+        .catch((e)=>{console.log(e);})
+      },[])
       
   return (
     <div className=" m-5 md:m-3 ">
       <div className=" font-mono w-full h-10 bg-yellow-300 rounded-xl mt-2 mb-3 p-2 ">
         <ul className="flex justify-evenly ">
         <li className=" text-black font-bold cursor-pointer hover:border-b-2 border-black"><Link to="/" >New Episods</Link></li>
-        <li className=" text-black font-bold cursor-pointer border-b-2 border-black"><Link to="/Home" >Go to Home page</Link></li>
+        <li className=" text-black font-bold cursor-pointer border-b-2 border-black"><Link to="/Home" >Home page</Link></li>
         </ul>
       </div>
 
@@ -37,7 +37,14 @@ function Home() {
         </form>
       </div>
       
-       <AnimeCard data={newEpisod}/>
+      
+      <div className="flex flex-row-reverse flex-wrap justify-evenly ">
+         {animeList?.map((anime)=>{
+        return(
+        <AnimeCard  key={anime.mal_id} id={anime.mal_id} title={anime.title} img={anime.images.jpg.image_url}/>
+        )})}
+      </div>
+       
        <Footer/>
     </div>
   )

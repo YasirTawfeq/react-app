@@ -22,7 +22,7 @@ function NewEpisode() {
         <li className=" text-black font-bold cursor-pointer hover:border-b-2 border-black"><Link to="/Home" >Go to Home page</Link></li>
         </ul>
       </div>
-       <AnimeCard data={newEpisod}/>
+       
     </div>
   )
 }
