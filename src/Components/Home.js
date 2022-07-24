@@ -4,18 +4,30 @@ import Footer from './Footer';
 import AnimeCard from './AnimeCard';
 import Axios from 'axios';
 import { useState,useEffect } from 'react';
+import HashLoader from "react-spinners/HashLoader";
 
 function Home() {
-      
+       const [loading,setLoading] = useState(false);
        const [animeList,setAnomeList]=useState([]);
+
        useEffect(()=>{
-        Axios.get("https://api.jikan.moe/v4/anime")
+        setLoading(true);
+        Axios.get("https://api.jikan.moe/v4/top/anime")
         .then((response)=>{console.log(response.data);setAnomeList(response.data.data.slice(0,21))})
         .catch((e)=>{console.log(e);})
-      },[])
-      
+       
+        setTimeout(()=>{
+            setLoading(false);
+        },2000)
+
+      },[animeList])
+     
+     
   return (
-    <div className=" m-5 md:m-3 ">
+    <>
+    {loading? 
+    <div className=" flex justify-center items-center mt-52"><HashLoader color={"yellow"} loading={loading} size={60} /></div>
+    :<div className=" m-5 md:m-3 ">
       <div className=" font-mono w-full h-10 bg-yellow-300 rounded-xl mt-2 mb-3 p-2 ">
         <ul className="flex justify-evenly ">
         <li className=" text-black font-bold cursor-pointer hover:border-b-2 border-black"><Link to="/" >New Episods</Link></li>
@@ -26,9 +38,9 @@ function Home() {
       <div className=" flex flex-col md:flex-row  justify-between font-mono w-full h-full md:h-10 bg-yellow-300 rounded-xl mt-2 mb-3 p-2 ">
         <div className="">
            <ul className="flex justify-evenly ">
-             <li className=" text-black font-bold cursor-pointer border-b-2  border-black"><Link to="/Sub" >Subtitle</Link></li>
-             <li className=" text-black font-bold cursor-pointer hover:border-b-2 ml-2 border-black"><Link to="/Dub" >English</Link></li>
-             <li className=" text-black font-bold cursor-pointer hover:border-b-2 ml-2 border-black"><Link to="/Kurdish" >Kurdish</Link></li>
+             <li className=" text-black font-bold cursor-pointer hover:border-b-2  border-black"><Link to="/Home" >Subtitle</Link></li>
+             <li className=" text-black font-bold cursor-pointer hover:border-b-2 ml-2 border-black"><Link to="/Home" >English</Link></li>
+             <li className=" text-black font-bold cursor-pointer hover:border-b-2 ml-2 border-black"><Link to="/Home" >Kurdish</Link></li>
            </ul>
         </div>
         <form className=" flex justify-center mt-4 md:mt-0 ">
@@ -46,7 +58,8 @@ function Home() {
       </div>
        
        <Footer/>
-    </div>
+    </div>}
+    </>
   )
 }
 

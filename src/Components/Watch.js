@@ -3,18 +3,30 @@ import Footer from './Footer'
 import {useParams,Link} from 'react-router-dom'
 import Axios from 'axios';
 import { useState,useEffect } from 'react';
+import HashLoader from "react-spinners/HashLoader";
 
 function Watch() {
        const {watch}=useParams();
+       const [loading,setLoading] = useState(false);
        const [watchList,setWatchList]=useState([]);
-      useEffect(()=>{
+       
+       useEffect(()=>{
+         setLoading(true);
          Axios.get(`https://api.jikan.moe/v4/anime/${watch}/episodes`)
          .then((response)=>{console.log(response.data.data);setWatchList(response.data.data)})
-      },[])
+         
+        setTimeout(()=>{
+            setLoading(false);
+        },2000)
+
+      },[watch])
 
 
   return (
-    <div>
+    <>
+     {loading? 
+    <div className=" flex justify-center items-center mt-52"><HashLoader color={"yellow"} loading={loading} size={60} /></div>
+    :<div>
       {watchList.slice(0,1)?.map((anime)=>{return(
      <center key={anime.mal_id} className="text-yellow-300">  
        
@@ -28,11 +40,7 @@ function Watch() {
 
         <div className="w-full lg:w-1/2 mt-3">
             <div className=" flex justify-center flex-wrap ">
-                {watchList.slice(200,250)?.map((eps)=>{
-                
-                <p className=" text-yellow-300">""</p>
-                 
-                 })}
+               
               <button  className="m-1 p-1 text-sm font-bold uppercase text-black bg-yellow-300 rounded-lg cursor-pointer ">Eps 1-99</button>
               <button  className="m-1 p-1 text-sm font-bold uppercase text-black bg-yellow-300 rounded-lg cursor-pointer ">Eps 100-199</button>
               <button  className="m-1 p-1 text-sm font-bold uppercase text-black bg-yellow-300 rounded-lg cursor-pointer ">Eps 200-299</button>
@@ -55,7 +63,8 @@ function Watch() {
      </center>
      )})}
     <Footer/>
-    </div>
+    </div>}
+    </>
   )
 }
 
