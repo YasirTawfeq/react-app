@@ -19,7 +19,7 @@ function AnimeHome() {
 
         setTimeout(()=>{
             setLoading(false);
-        },2000)
+        },1500)
 
       },[id])
     

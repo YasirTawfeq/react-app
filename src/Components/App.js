@@ -1,10 +1,9 @@
-import React from 'react'
+import React ,{ useState,useEffect } from 'react'
 import '../index.css';
 import Navbar from './Navbar';
 import NewEpisode from './NewEpisode';
 import Footer from './Footer';
-import { useState,useEffect } from 'react';
-import HashLoader from "react-spinners/HashLoader";
+import AnimatedText from 'react-animated-text-content';
 
 function App() {
 
@@ -14,14 +13,35 @@ function App() {
        setLoading(true);
          setTimeout(()=>{
              setLoading(false);
-         },2000)
+         },3000)
       },[])
 
 
   return (
     <div>
     {loading?  
-    <div className=" flex justify-center items-center mt-52"><HashLoader color={"yellow"} loading={loading} size={60} /></div>
+    <div className=" flex justify-center items-center mt-52 text-yellow-300 text-4xl">
+    
+       <AnimatedText
+         type="chars" 
+         animation={{
+         x: '200px',
+         y: '-20px',
+         scale: 1.1,
+         ease: 'ease-in-out',
+         }}
+         animationType="throw"
+         interval={0.06}
+         duration={1}
+         tag="p"
+         className="animated-paragraph"
+         includeWhiteSpaces
+         threshold={0.1}
+         rootMargin="20%">
+        Kurd Anime
+      </AnimatedText>
+    
+    </div>
      :<>
      <Navbar />
      <NewEpisode />
