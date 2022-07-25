@@ -1,7 +1,6 @@
 import '../index.css';
 import {Link} from 'react-router-dom'
 function Anime(anime) {
-
   return (
      <Link to={`/AnimeHome/${anime.id}`}>
     
