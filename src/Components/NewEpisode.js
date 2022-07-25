@@ -8,12 +8,12 @@ function NewEpisode() {
        const [newEpisod,setNewEpisode]=useState([]);
        
        useEffect(()=>{
-         Axios.get("https://api.jikan.moe/v4/top/anime")
-        .then((response)=>{
-        setNewEpisode(response.data.data)
+         Axios.get("https://gogoanime.herokuapp.com/recent-release")
+        .then((response)=>{console.log(response.data)
+        setNewEpisode(response.data)
         }).catch((e)=>{console.log(e);})
         
-      },[newEpisod])
+      },[])
 
   return (
     <>
@@ -28,7 +28,7 @@ function NewEpisode() {
       <div className="flex flex-row-reverse flex-wrap justify-evenly ">
          {newEpisod.slice(0,21)?.map((anime)=>{
         return(
-        <AnimeCard  key={anime.mal_id} id={anime.mal_id} title={anime.title} img={anime.images.jpg.image_url}/>
+        <AnimeCard  key={anime.episodeId} id={anime.episodeId} title={anime.animeTitle} img={anime.animeImg}/>
         )})}
       </div>
     </div>
